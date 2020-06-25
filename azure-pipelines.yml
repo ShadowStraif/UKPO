@@ -35,7 +35,7 @@ steps:
 
     script: |
 
-      cd UKPO\UnitTest1
+      cd UKPO\Debug
     
 
-      .\test1.exe    
+      .\UKPO.exe    
