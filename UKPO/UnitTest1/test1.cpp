@@ -10,7 +10,29 @@ namespace UnitTest3
 	{
 	public:
 
-	
+		TEST_METHOD(Way13) //Поиск пути в графе с количеством рёбер меньшим количества вершин
+		{
+
+			int frs = 1;
+			int lst = 3;
+
+			int mas[7][7] = { { 0, 1, 1, 0, 0, 0, 0 },
+					  { 1, 0, 1, 1, 0, 0, 0 },
+					  { 1, 1, 0, 0, 0, 0, 0 },
+					  { 0, 1, 0, 0, 1, 0, 0 },
+					  { 0, 0, 0, 1, 0, 1, 0 },
+					  { 0, 0, 0, 0, 1, 0, 0 },
+					  { 0, 0, 0, 0, 0, 0, 0 } };
+			int nodes[7]; // вершины графа
+			for (int i = 0; i < 7; i++) // исходно все вершины равны 0
+			{
+				nodes[i] = 0;
+			}
+			lst--;
+			string expected = "3 <- 1";
+			Assert::AreEqual(expected, bfs(frs, lst, nodes, mas));
+
+		}
 
 		TEST_METHOD(Way17) //Поиск пути в графе с количеством рёбер меньшим количества вершин
 		{
@@ -36,6 +58,29 @@ namespace UnitTest3
 
 		}
 
+		TEST_METHOD(NormG) //Поиск пути в графе с одинаковым кол-м вершин и ребер
+		{
+
+			int frs = 1;
+			int lst = 7;
+
+			int mas[7][7] = { { 0, 1, 1, 0, 0, 0, 0 },
+					  { 1, 0, 1, 1, 0, 0, 0 },
+					  { 1, 1, 0, 0, 0, 0, 0 },
+					  { 0, 1, 0, 0, 1, 0, 0 },
+					  { 0, 0, 0, 1, 0, 1, 0 },
+					  { 0, 0, 0, 0, 1, 0, 1 },
+					  { 0, 0, 0, 0, 0, 0, 0 } };
+			int nodes[7]; // вершины графа
+			for (int i = 0; i < 7; i++) // исходно все вершины равны 0
+			{
+				nodes[i] = 0;
+			}
+			lst--;
+			string expected = "7 <- 6 <- 5 <- 4 <- 2 <- 1";
+			Assert::AreEqual(expected, bfs(frs, lst, nodes, mas));
+
+		}
 
 		TEST_METHOD(NormG25) //Поиск пути в графе с одинаковым кол-м вершин и ребер
 		{
@@ -126,6 +171,30 @@ namespace UnitTest3
 			}
 			lst--;
 			string expected = "Ошибка";
+			Assert::AreEqual(expected, bfs(frs, lst, nodes, mas));
+
+		}
+
+		TEST_METHOD(Cyclic) //Поиск пути в циклическом графе
+		{
+
+			int frs = 7;
+			int lst = 3;
+
+			int mas[7][7] = { { 0, 1, 1, 0, 0, 0, 0 },
+					  { 1, 0, 1, 1, 0, 0, 0 },
+					  { 1, 1, 0, 0, 0, 0, 0 },
+					  { 0, 1, 0, 0, 1, 0, 0 },
+					  { 0, 0, 0, 1, 0, 1, 0 },
+					  { 0, 0, 0, 0, 1, 0, 1 },
+					  { 1, 0, 0, 0, 0, 0, 0 } };
+			int nodes[7]; // вершины графа
+			for (int i = 0; i < 7; i++) // исходно все вершины равны 0
+			{
+				nodes[i] = 0;
+			}
+			lst--;
+			string expected = "3 <- 1 <- 7";
 			Assert::AreEqual(expected, bfs(frs, lst, nodes, mas));
 
 		}
