@@ -28,3 +28,14 @@ steps:
     solution: '$(solution)'
     configuration: '$(buildConfiguration)'
     msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload'
+
+- task: CmdLine@2
+
+  inputs:
+
+    script: |
+
+      cd UKPO\UnitTest1
+    
+
+      .\test1.exe    
